@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Bom Dia, Mundo</title>
+</head>
+<body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: uma coluna de leitura, como um jornal de bolso — faixa de mercado no topo, quatro blocos, citação em destaque, fontes ao pé */
+:root{
+  --bg:#F4F6F9; --surface:#FFFFFF; --fg:#16202B; --muted:#596677; --line:#D9E0E8; --dawn:#C76F1C; --dawn-soft:#F6E6D3;
+  --up:#1E7A4E; --down:#B23A3A;
+  --display:"Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --body:"Literata", Georgia, "Times New Roman", serif;
+  --mono:"JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F151C; --surface:#161E28; --fg:#E5EAF0; --muted:#97A3B2; --line:#26313E; --dawn:#F0A04B; --dawn-soft:#2B2116; --up:#5CC48F; --down:#F07B7B; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F151C; --surface:#161E28; --fg:#E5EAF0; --muted:#97A3B2; --line:#26313E; --dawn:#F0A04B; --dawn-soft:#2B2116; --up:#5CC48F; --down:#F07B7B; color-scheme:dark}
+
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6}
+.wrap{max-width:720px;margin:0 auto;padding-inline:20px;padding-block:28px 56px;display:flex;flex-direction:column;gap:40px}
+
+header{display:flex;flex-direction:column;gap:6px}
+.horizon{width:100%;height:46px;display:block}
+.date{font-family:var(--display);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(34px,7vw,48px);line-height:1.05;margin:0;text-wrap:balance;letter-spacing:-.01em}
+.lede{margin:6px 0 0;color:var(--muted);max-width:60ch}
+
+.ticker{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1px;background:var(--line);border-block:1px solid var(--line)}
+.tick{padding:12px 10px;display:flex;flex-direction:column;gap:2px;min-width:0;background:var(--bg)}
+.tick .k{font-family:var(--display);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.tick .v{font-family:var(--mono);font-size:17px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tick .d{font-family:var(--mono);font-size:12px;font-variant-numeric:tabular-nums}
+.d.up{color:var(--up)} .d.down{color:var(--down)} .d.flat{color:var(--muted)}
+.ticknote{font-size:13px;color:var(--muted);margin:8px 0 0}
+
+section{display:flex;flex-direction:column;gap:14px}
+.risk .sec-head .level{margin-left:auto;font-family:var(--display);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dawn);border:1.5px solid var(--dawn);border-radius:3px;padding:2px 8px}
+.wx{flex-direction:row;align-items:center;gap:20px;padding:16px 18px;border:1px solid var(--line);border-radius:4px;background:var(--surface)}
+.wx-temp{font-family:var(--mono);font-size:30px;font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--dawn)}
+.wx-temp .num{font-size:1em}
+.wx-temp .sep{color:var(--muted);margin:0 2px}
+.wx-text{display:flex;flex-direction:column;gap:2px;min-width:0}
+.wx-text .k{font-family:var(--display);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.wx-text p{margin:0;font-size:16px}
+@media (max-width:480px){.wx{flex-direction:column;align-items:flex-start;gap:8px}}
+.sec-head{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--fg);padding-bottom:6px}
+.sec-head .n{font-family:var(--mono);font-size:13px;color:var(--dawn)}
+h2{font-family:var(--display);font-weight:700;font-size:22px;margin:0;letter-spacing:-.005em}
+.items{display:flex;flex-direction:column;gap:16px}
+.item h3{font-family:var(--display);font-weight:500;font-size:18px;line-height:1.3;margin:0 0 4px;text-wrap:balance}
+.item p{margin:0;max-width:65ch}
+.num{font-family:var(--mono);font-size:.92em;font-variant-numeric:tabular-nums}
+
+.quote{background:var(--dawn-soft);border-radius:4px;padding:28px 24px;display:flex;flex-direction:column;gap:14px}
+.quote .label{font-family:var(--display);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dawn);font-weight:700}
+blockquote{margin:0;font-style:italic;font-size:clamp(21px,4vw,26px);line-height:1.35;text-wrap:balance}
+.who{font-family:var(--display);font-size:14px;color:var(--muted)}
+.quote p{margin:0;max-width:62ch}
+
+footer{display:flex;flex-direction:column;gap:10px;font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+footer ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+footer a{color:var(--muted)}
+a:focus-visible{outline:2px solid var(--dawn);outline-offset:2px}
+.next{font-family:var(--display);color:var(--fg)}
+
+@media (max-width:560px){
+  .ticker{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tick:first-child{grid-column:1 / -1}
+}
+</style>
+
+<div class="wrap">
+  <header>
+    <svg class="horizon" viewBox="0 0 720 46" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 40 H720" stroke="var(--line)" stroke-width="1.5" fill="none"/>
+      <path d="M330 40 A30 30 0 0 1 390 40 Z" fill="var(--dawn)"/>
+      <g stroke="var(--dawn)" stroke-width="2" stroke-linecap="round" fill="none">
+        <path d="M360 4 V0"/><path d="M318 16 L313 12"/><path d="M402 16 L407 12"/><path d="M300 32 L294 31"/><path d="M420 32 L426 31"/>
+      </g>
+    </svg>
+    <div class="date">Quarta-feira · 7 de outubro de 2026</div>
+    <h1>Bom dia, Taba.</h1>
+    <p class="lede">Depois da euforia, o dia é de costura: alianças para o segundo turno, mercado acomodando ganhos e uma França nas ruas. Aqui está o essencial.</p>
+  </header>
+
+  <div>
+    <div class="ticker" role="list">
+      <div class="tick" role="listitem"><span class="k">Ibovespa</span><span class="v">205.835</span><span class="d down">−0,5%</span></div>
+      <div class="tick" role="listitem"><span class="k">Dólar</span><span class="v">R$ 4,98</span><span class="d flat">estável</span></div>
+      <div class="tick" role="listitem"><span class="k">Euro</span><span class="v">R$ 5,61</span><span class="d up">+0,1%</span></div>
+      <div class="tick" role="listitem"><span class="k">Selic</span><span class="v">13,75%</span><span class="d flat">−0,25 em set.</span></div>
+      <div class="tick" role="listitem"><span class="k">Brent</span><span class="v">US$ 100,74</span><span class="d up">+0,4%</span></div>
+    </div>
+    <p class="ticknote">Ibovespa, Selic e Brent: fechamento de terça (6/out). Dólar e euro: cotação desta quarta pela manhã. Variação sobre o fechamento anterior.</p>
+  </div>
+
+  <section class="wx" aria-label="Tempo em São Paulo">
+    <div class="wx-temp"><span class="num">18°</span><span class="sep">/</span><span class="num">27°</span></div>
+    <div class="wx-text">
+      <span class="k">Tempo em São Paulo hoje</span>
+      <p>Sol entre nuvens, com <strong>88% de chance de chuva</strong> em pancadas rápidas ao longo do dia e à noite (cerca de 10 mm). Roupa leve, mas guarda-chuva na bolsa. Amanhã fica mais quente, máxima de 29 °C, e a chance de chuva cai para 53%, com pancadas à tarde.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="n">1</span><h2>Brasil · política e economia</h2></div>
+    <div class="items">
+      <article class="item">
+        <h3>União Brasil e PP fecham apoio a Flávio no 2º turno</h3>
+        <p>A federação União-Progressistas, neutra no primeiro turno, decidiu por unanimidade apoiar Flávio Bolsonaro contra Lula; o anúncio foi feito pela senadora Tereza Cristina em Brasília. O senador do PL soma o apoio de <span class="num">10</span> governadores eleitos, contra <span class="num">5</span> de Lula, além de Romeu Zema, Ronaldo Caiado e Michel Temer. A votação é em <strong>25 de outubro</strong>; no primeiro turno, Flávio teve 47,03% e Lula 45,16% dos válidos.</p>
+      </article>
+      <article class="item">
+        <h3>Ibovespa realiza lucro depois do recorde</h3>
+        <p>O índice caiu <span class="num">0,52%</span> na terça, para <span class="num">205.835</span> pontos, um dia após o salto de 7,7% que levou a marca a 206.912. Petrobras (−2,8%) e Vale (−1,4%) puxaram a queda. Mesmo assim, a bolsa acumula alta de quase <span class="num">10%</span> no mês e de 45% em 12 meses.</p>
+      </article>
+      <article class="item">
+        <h3>Real estável e juros longos perto de 12,9%</h3>
+        <p>O dólar ficou praticamente parado em <span class="num">R$ 4,98</span>, depois da forte valorização do real na segunda. O título de 10 anos voltou a rondar <span class="num">12,91%</span>. O mercado segue tratando a eleição como o principal motor de preços até o dia 25.</p>
+      </article>
+      <article class="item">
+        <h3>Focus: inflação de 2026 sobe pela terceira semana</h3>
+        <p>O boletim do Banco Central elevou a projeção do IPCA deste ano para <span class="num">5,01%</span>, acima do teto da meta (4,5%). A Selic esperada para dezembro ficou em 13,5% e o PIB de 2026 em 1,85%. Para o câmbio, o mercado ainda projeta R$ 5,20 no fim do ano, bem acima da cotação atual.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="n">2</span><h2>Cenário internacional</h2></div>
+    <div class="items">
+      <article class="item">
+        <h3>Exportações do Golfo voltam a 98% e Brent segura os US$ 100</h3>
+        <p>Segundo o JPMorgan, os embarques de petróleo do Oriente Médio chegaram a <span class="num">17,5 milhões</span> de barris por dia, quase o nível de antes da guerra com o Irã. Mesmo assim, as tensões na região mantêm o Brent perto de US$ 100,74. No Iêmen, a coalizão liderada pela Arábia Saudita retomou áreas próximas ao estreito de Bab el-Mandeb das mãos dos houthis.</p>
+      </article>
+      <article class="item">
+        <h3>Rússia e Ucrânia trocam ataques pesados</h3>
+        <p>Drones ucranianos atingiram Moscou durante a madrugada, com dois mortos e nove feridos; a Rússia diz ter enfrentado mais de 650 drones. Em Kharkiv, bombas russas atingiram um bairro residencial, deixando seis mortos e 59 feridos. No Mar Negro, um ataque russo matou dois tripulantes de um navio comercial.</p>
+      </article>
+      <article class="item">
+        <h3>Quebec elege separatistas e promete referendo</h3>
+        <p>O Parti Québécois venceu a eleição provincial com cerca de <span class="num">28%</span> dos votos e prometeu um novo referendo sobre a independência do Quebec, reabrindo um tema que o Canadá não discutia a sério desde 1995.</p>
+      </article>
+      <article class="item">
+        <h3>Europa em alerta com espionagem e guerra híbrida</h3>
+        <p>Na Alemanha, um ex-chefe de inteligência foi detido sob acusação de espionagem. O primeiro-ministro da Lituânia pediu um plano da Otan contra ataques híbridos russos.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="n">3</span><h2>França</h2></div>
+    <div class="items">
+      <article class="item">
+        <h3>Protestos estudantis fecham quase 2.000 liceus</h3>
+        <p>Na terça, as autoridades contaram cerca de <span class="num">250 mil</span> manifestantes no país; os organizadores falam em 500 mil. Houve confrontos com a polícia: ao menos 215 jovens e 715 policiais feridos, e 6.100 detidos desde o início do movimento, a maioria menores. Os alunos pedem reposição de professores, reforma de prédios degradados e mudanças na jornada escolar.</p>
+      </article>
+      <article class="item">
+        <h3>Lecornu suspende as aulas do ensino médio até sexta</h3>
+        <p>O primeiro-ministro mandou os ministros responderem às reivindicações até o fim de outubro e prometeu reformar escolas. O movimento já ganhou apoio de sindicatos de agricultores, de trabalhadores de energia e de professores, num momento em que o governo tenta aprovar um orçamento de austeridade.</p>
+      </article>
+      <article class="item">
+        <h3>CAC 40 cai 0,85% com bancos e risco fiscal</h3>
+        <p>A bolsa de Paris fechou em <span class="num">7.798</span> pontos, com BNP Paribas, Crédit Agricole e Société Générale entre as maiores quedas. O próprio governo admite que a situação no mercado de títulos é séria. No mês, o índice já perde <span class="num">6,25%</span>.</p>
+      </article>
+      <article class="item">
+        <h3>Déficit comercial encolhe mais que o esperado</h3>
+        <p>O saldo negativo da balança francesa caiu para <span class="num">€ 6,1 bilhões</span> em agosto, com recuo tanto das exportações quanto das importações. É um dos raros dados positivos numa semana de notícias fiscais ruins.</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="n">4</span><h2>Radar de tecnologia & inovação</h2></div>
+    <div class="items">
+      <article class="item">
+        <h3>DeepSeek fecha rodada de pelo menos US$ 12 bilhões</h3>
+        <p>A chinesa está finalizando captação de no mínimo 80 bilhões de yuans, com Tencent e a fabricante de baterias CATL entre os investidores, e o total pode chegar a 100 bilhões. A empresa mira uma abertura de capital em Hong Kong no primeiro trimestre de 2027.</p>
+      </article>
+      <article class="item">
+        <h3>Reflection anuncia o Beam, modelo aberto de 501 bilhões de parâmetros</h3>
+        <p>O modelo usa arquitetura de especialistas, com <span class="num">23 bilhões</span> de parâmetros ativos, e foi treinado com 23,8 trilhões de tokens em 10,5 mil GPUs Nvidia GB300 por quatro semanas. Pesos e relatório técnico saem ainda este mês.</p>
+      </article>
+      <article class="item">
+        <h3>Etched, de chips para IA, já recebe ofertas de US$ 40 a 50 bilhões</h3>
+        <p>O valor dobraria a avaliação de US$ 21 bilhões fixada em setembro, numa rodada de US$ 700 milhões liderada pela Jane Street. Em julho, a empresa valia US$ 10,3 bilhões.</p>
+      </article>
+      <article class="item">
+        <h3>HackerRank libera entrevistador com IA para todos</h3>
+        <p>O Chakra saiu de uma fase de testes de seis meses com <span class="num">500 mil</span> entrevistas feitas, para clientes como Snowflake e Capgemini. Ele junta triagem, teste prático e painel numa sessão só e dá nota ao raciocínio do candidato.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="risk" aria-label="Risco para a Rhapsody">
+    <div class="sec-head"><span class="n">5</span><h2>Risco para a Rhapsody</h2><span class="level">Baixo</span></div>
+    <div class="items">
+      <article class="item">
+        <h3>Sem lançamento novo de treinamento com IA nas últimas 24 horas</h3>
+        <p>Nenhuma big tech nem plataforma de LMS ou RH anunciou role-play, simulação ou coaching com IA hoje. O sinal mais próximo é o Chakra, da HackerRank: conversa avaliada por IA em escala (500 mil sessões), mas aplicada a recrutamento, não a treinamento. Mostra que o RH já aceita IA conduzindo e pontuando diálogos, o que valida a tese da Rhapsody e, ao mesmo tempo, ensina o mercado a esperar isso de qualquer fornecedor.</p>
+      </article>
+      <article class="item">
+        <h3>Custo de modelos segue caindo, para os dois lados</h3>
+        <p>Dinheiro grande em DeepSeek e modelos abertos como o Beam baratearão a inteligência que roda as simulações, o que melhora a margem da Rhapsody, mas também reduz a barreira para concorrentes novos. Vale acompanhar se HackerRank ou similares levam o mesmo motor de entrevista para treino de vendas e atendimento.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="quote" aria-label="Citação do dia">
+    <span class="label">6 · Citação do dia</span>
+    <blockquote>“Não é que tenhamos pouco tempo; é que perdemos muito dele.”</blockquote>
+    <span class="who">Sêneca, <em>Sobre a brevidade da vida</em>, I · século I</span>
+    <p>Hoje o noticiário oferece muita coisa para acompanhar minuto a minuto: alianças, pesquisas, cotações, protestos. Quase nada disso muda o que você precisa fazer até a noite. Escolha as duas ou três tarefas que só você pode fazer e proteja um bloco de tempo para elas antes de abrir o próximo alerta. O resto pode esperar a edição de amanhã.</p>
+  </section>
+
+  <footer>
+    <span class="next">Próxima edição: amanhã, às 06h45.</span>
+    <span>Fontes</span>
+    <ul>
+      <li><a href="https://www.climatempo.com.br/previsao-do-tempo/15-dias/cidade/558/saopaulo-sp">Climatempo · previsão para São Paulo (SP)</a></li>
+      <li><a href="https://tradingeconomics.com/brazil/stock-market">Trading Economics · Ibovespa e indicadores do Brasil</a></li>
+      <li><a href="https://www.gazetadopovo.com.br/eleicoes/2026/uniao-brasil-e-pp-anunciam-apoio-a-flavio-bolsonaro-no-segundo-turno/">Gazeta do Povo · União Brasil e PP apoiam Flávio</a></li>
+      <li><a href="https://www.gazetadopovo.com.br/eleicoes/2026/flavio-avanca-segundo-turno-apoio-governadores/">Gazeta do Povo · governadores no 2º turno</a></li>
+      <li><a href="https://agenciabrasil.ebc.com.br/economia/noticia/2026-10/focus-mercado-eleva-previsao-da-inflacao-para-501-em-2026">Agência Brasil · Boletim Focus</a></li>
+      <li><a href="https://www.vantagemarkets.com/market-news/brent-crude-oil-price-gulf-exports-october-6-2026/">Vantage Markets · Brent e exportações do Golfo</a></li>
+      <li><a href="https://www.justsecurity.org/159804/early-edition-october-6-2026/">Just Security · Early Edition, 6/out</a></li>
+      <li><a href="https://www.aljazeera.com/news/2026/10/6/demonstrators-clash-with-riot-police-in-france-as-education-protests-mount">Al Jazeera · protestos estudantis na França</a></li>
+      <li><a href="https://tradingeconomics.com/france/stock-market">Trading Economics · CAC 40 e economia francesa</a></li>
+      <li><a href="https://aiweekly.co/ai-news-today/edition/2026-10-06">AI Weekly · edição de 6/out (DeepSeek, Reflection, Etched, HackerRank)</a></li>
+    </ul>
+  </footer>
+</div>
+</body>
+</html>
